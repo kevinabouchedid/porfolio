@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kevin Abou Chedid — Project Management &amp; Mechanical Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --paper-2:#F4F5F7;
+    --ink:#1A1A1A;
+    --ink-soft:#4A4A4A;
+    --line:#D8DADD;
+    --line-strong:#9AA0A6;
+    --copper:#33475B;
+    --copper-dark:#33475B;
+  }
+  *{box-sizing:border-box;}
+  
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.55;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
+  a{color:var(--copper-dark);}
+
+  h1,h2,h3{font-weight:600;margin:0;color:var(--ink);}
+  h1{font-size:clamp(38px,7vw,68px);line-height:1.04;letter-spacing:-.025em;}
+  h2{font-size:clamp(26px,3.4vw,36px);line-height:1.2;letter-spacing:-.015em;}
+  h3{font-size:20px;line-height:1.3;letter-spacing:-.005em;}
+  p{margin:0 0 12px;color:var(--ink-soft);max-width:64ch;}
+  .lede{font-size:19px;color:var(--ink);max-width:56ch;}
+
+  /* ---------- nav ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,0.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex;justify-content:space-between;align-items:center;padding:12px 32px;}
+  .brand{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-decoration:none;}
+  .navlinks{display:flex;gap:26px;font-size:14px;}
+  .navlinks a{color:var(--ink-soft);text-decoration:none;position:relative;padding-bottom:2px;}
+  .navlinks a:hover{color:var(--ink);}
+  .navlinks a:hover{text-decoration:underline;}
+  @media(max-width:700px){.navlinks{display:none;}}
+
+  /* ---------- scroll reveal ---------- */
+  .reveal{opacity:1;transform:none;}
+  .reveal.in{opacity:1;transform:none;}
+  
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+
+  /* ---------- section shell ---------- */
+  .sheet{position:relative;padding:56px 0;border-bottom:1px solid var(--line);}
+  .sec-label{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--ink-soft);display:block;margin-bottom:16px;
+  }
+  
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:44px 0 56px;
+    border-bottom:1px solid var(--line);
+  }
+  
+  .hero-top{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-bottom:18px;}
+  .hero-top img{width:96px;height:96px;border-radius:50%;border:1px solid var(--line-strong);flex-shrink:0;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--copper-dark);margin-bottom:10px;}
+  .hero .role{font-size:19px;color:var(--ink-soft);max-width:52ch;margin-top:14px;}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.02em;
+    padding:13px 22px;border:1px solid var(--line-strong);text-decoration:none;color:var(--ink);
+    display:inline-block;background:#FFFFFF;
+    transition:background .15s ease;
+  }
+  
+  .btn.primary{background:var(--copper);color:#FFFFFF;border-color:var(--copper);font-weight:500;}
+  .btn.primary:hover{background:#1A1A1A;border-color:#1A1A1A;}
+  .btn.ghost:hover{background:var(--paper-2);}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:44px;}
+  @media(max-width:800px){.about-grid{grid-template-columns:1fr;gap:36px;}}
+  .now-list{list-style:none;padding:0;margin:0;}
+  .now-list li{border-top:1px solid var(--line);padding:10px 0;}
+  .now-list li:last-child{border-bottom:1px solid var(--line);}
+  .now-list .role{font-weight:600;color:var(--ink);}
+  .now-list .org{font-size:13px;color:var(--copper-dark);font-family:'IBM Plex Mono',monospace;}
+  .now-list .when{font-size:12px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;float:right;}
+
+  /* ---------- experience ---------- */
+  .job{padding:36px 0;border-top:1px solid var(--line);}
+  .job:last-of-type{border-bottom:1px solid var(--line);}
+  .job-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:4px;}
+  .job .meta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--copper-dark);}
+  .job .dates{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
+  .job ul{margin:12px 0;padding-left:18px;color:var(--ink-soft);max-width:64ch;}
+  .job ul li{margin-bottom:5px;}
+
+  /* document feature */
+  .docfeat{
+    display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:26px;align-items:start;
+    margin:20px 0 6px;padding:20px;border:1px solid var(--line);background:var(--paper-2);
+  }
+  @media(max-width:760px){.docfeat{grid-template-columns:1fr;gap:22px;}}
+  .docfeat .shot{
+    display:block;border:1px solid var(--line-strong);background:#fff;overflow:hidden;
+    
+    
+  }
+  
+  .docfeat .shot img{width:100%;display:block;}
+  .docfeat .kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--copper-dark);margin-bottom:12px;}
+  .pullquote{font-size:16px;color:var(--ink);border-left:2px solid var(--copper);padding-left:14px;margin:0 0 12px;max-width:52ch;}
+  .ratings{list-style:none;padding:0;margin:0 0 18px;}
+  .ratings li{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);padding:5px 0;border-bottom:1px dashed var(--line);}
+  .ratings li span{color:var(--ink);float:right;}
+  .doc-link{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:12px;
+    padding:9px 16px;border:1px solid var(--line-strong);text-decoration:none;color:var(--ink);background:var(--paper);
+    transition:background .15s ease;
+  }
+  .doc-link:hover{background:var(--paper-2);}
+
+  /* ---------- sliding gallery ---------- */
+  .gallery{margin-top:20px;}
+  .gal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:16px;}
+  .gal-title{font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:var(--ink-soft);}
+  .gal-ctrls{display:flex;gap:8px;}
+  .gal-btn{
+    width:36px;height:36px;border:1px solid var(--line-strong);background:var(--paper);
+    color:var(--ink);cursor:pointer;font-size:15px;line-height:1;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s ease,transform .2s ease;
+  }
+  .gal-btn:hover{background:var(--copper);color:#FFFFFF;}
+  
+  .gal-btn:disabled{opacity:.3;cursor:default;}
+  .gal-btn:disabled:hover{background:var(--paper);color:var(--ink);}
+  .track{
+    display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;
+    scrollbar-width:thin;scrollbar-color:var(--line) transparent;
+    cursor:grab;
+  }
+  .track.dragging{cursor:grabbing;scroll-behavior:auto;scroll-snap-type:none;}
+  .track::-webkit-scrollbar{height:4px;}
+  .track::-webkit-scrollbar-thumb{background:var(--line);}
+  .track::-webkit-scrollbar-track{background:transparent;}
+  .slide{
+    flex:0 0 auto;scroll-snap-align:start;position:relative;
+    border:1px solid var(--line);overflow:hidden;background:var(--paper-2);
+  }
+  .slide img{width:100%;height:100%;object-fit:cover;display:block;}
+  
+  .slide figcaption{
+    position:absolute;left:0;right:0;bottom:0;
+    font-family:'IBM Plex Sans',sans-serif;font-size:11px;color:var(--ink-soft);
+    padding:22px 12px 10px;
+    background:rgba(244,245,247,1);
+  }
+  /* charts: show whole plot, never crop */
+  .slide.fig{background:#FFFFFF;}
+  .slide.fig img{object-fit:contain;padding:10px;}
+  
+  .slide.fig figcaption{background:rgba(244,245,247,1);}
+
+
+
+  .banner{width:100%;display:block;}
+  .bannerwrap{width:100%;line-height:0;border-bottom:1px solid var(--line);}
+
+  mark{
+    background:#EDEFF2;
+    color:var(--ink);
+    box-shadow:inset 0 -2px 0 var(--line-strong);
+    padding:1px 2px;font-weight:600;
+  }
+
+
+  .highlights{
+    list-style:none;margin:0;padding:0;
+    border-left:1px solid var(--line);padding-left:18px;
+  }
+  .highlights li{padding:6px 0;}
+  .highlights li + li{border-top:1px solid var(--line);}
+  .highlights b{
+    display:block;font-size:18px;font-weight:600;color:var(--ink);
+    line-height:1.1;letter-spacing:-.01em;
+  }
+  .highlights span{
+    font-family:'IBM Plex Mono',monospace;font-size:9.5px;
+    text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);
+  }
+  .hero-grid{display:grid;grid-template-columns:1fr auto;gap:56px;align-items:start;}
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:36px;}
+    .highlights{border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:8px;}
+  }
+
+
+  .proj-grid .gallery{min-width:0;}
+  .proj-grid .slide.s-wide{width:100%;max-width:420px;height:250px;}
+  .proj-grid .slide.s-tall{width:230px;height:250px;}
+  @media(max-width:760px){
+    .proj-grid .slide.s-wide{max-width:300px;height:190px;}
+    .proj-grid .slide.s-tall{width:170px;height:190px;}
+  }
+
+  /* inline code viewer */
+  .codebox{margin-top:14px;border:1px solid var(--line);background:var(--paper-2);}
+  .codebox summary{
+    cursor:pointer;padding:10px 14px;font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--copper-dark);
+    list-style:none;
+  }
+  .codebox summary::-webkit-details-marker{display:none;}
+  .codebox summary::before{content:"+ ";font-weight:600;}
+  .codebox[open] summary::before{content:"\2212 ";}
+  .codebox summary:hover{background:var(--paper);}
+  .codebox pre{
+    margin:0;padding:16px;overflow:auto;max-height:460px;
+    border-top:1px solid var(--line);background:#F4F5F7;
+  }
+  .codebox code{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.65;
+    color:#1A1A1A;white-space:pre;
+  }
+
+  /* varied sizes */
+  .s-tall{width:300px;height:420px;}
+  .s-wide{width:520px;height:300px;}
+  .s-sq{width:340px;height:340px;}
+  .s-lg{width:460px;height:420px;}
+  @media(max-width:640px){
+    .s-tall{width:210px;height:300px;}
+    .s-wide{width:300px;height:200px;}
+    .s-sq{width:230px;height:230px;}
+    .s-lg{width:280px;height:280px;}
+  }
+
+  /* ---------- projects ---------- */
+  .proj{border-top:1px solid var(--line);padding:32px 0;}
+  .proj:last-of-type{border-bottom:1px solid var(--line);}
+  .proj-grid{display:grid;grid-template-columns:1fr minmax(0,420px);gap:32px;align-items:center;}
+  .proj-grid.flip{grid-template-columns:minmax(0,420px) 1fr;}
+  @media(max-width:760px){.proj-grid,.proj-grid.flip{grid-template-columns:1fr;gap:22px;}}
+  .proj .when{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);display:block;margin-bottom:8px;}
+  .proj figure img{width:100%;display:block;border:1px solid var(--line);}
+  .proj figure{overflow:hidden;border:1px solid var(--line);}
+  
+
+  /* ---------- skills ---------- */
+  .skillgrid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);}
+  @media(max-width:760px){.skillgrid{grid-template-columns:repeat(2,1fr);}}
+  .skillcol{padding:16px 16px 16px 0;border-right:1px solid var(--line);}
+  .skillcol:last-child{border-right:none;}
+  .skillcol .label{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--copper-dark);margin-bottom:12px;display:block;}
+  .skillcol div{font-size:14px;color:var(--ink);margin-bottom:5px;}
+
+  /* ---------- contact ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;}
+  @media(max-width:640px){.contact-grid{grid-template-columns:1fr;gap:28px;}}
+  .contact-list{list-style:none;padding:0;margin:0;font-family:'IBM Plex Mono',monospace;font-size:15px;}
+  .contact-list li{border-top:1px solid var(--line);padding:10px 0;}
+  .contact-list li:last-child{border-bottom:1px solid var(--line);}
+  .contact-list a{color:var(--ink);text-decoration:none;transition:color .2s ease;}
+  .contact-list a:hover{color:var(--copper-dark);}
+
+  footer{padding:20px 0;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
+  ::selection{background:#D8DADD;color:#1A1A1A;}
+</style>
+</head>
+<body>
+
+<div class="bannerwrap"><img class="banner" src="assets/banner.jpg" alt="Kevin Abou Chedid — Mechanical Engineering Student Building Solutions Through Design, Construction, and Leadership"></div>
+
+<header class="site">
+  <nav class="wrap">
+    <a class="brand" href="#top">K. ABOU CHEDID</a>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+      <div class="hero-top reveal">
+        <img src="assets/headshot.png" alt="Portrait of Kevin Abou Chedid">
+        <div>
+          <p class="eyebrow">Project Management · Mechanical Engineering</p>
+          <h1>Kevin Abou&nbsp;Chedid</h1>
+        </div>
+      </div>
+      <p class="role reveal d1">Mechanical engineering student at UIC with two engineering internships — HVAC and plumbing design at an MEP firm, and construction inspection on a bridge rehabilitation project.</p>
+      <p class="reveal d2" style="max-width:54ch;">BS Mechanical Engineering, Minor in Electrical Engineering — University of Illinois Chicago, expected May 2028.</p>
+      <div class="cta-row reveal d3">
+        <a class="btn primary" href="assets/Kevin_Abou_Chedid_Resume.pdf" id="resume-link" download="Kevin_Abou_Chedid_Resume.pdf">Download resume</a>
+        <a class="btn ghost" href="#contact">Contact</a>
+        </div>
+        <ul class="highlights reveal d2">
+          <li><b>3.92</b><span>GPA / 4.0</span></li>
+          <li><b>2028</b><span>BS Mech. Eng., Minor ECE — UIC</span></li>
+          <li><b>2</b><span>engineering internships</span></li>
+          <li><b>10+</b><span>person team led at ASME</span></li>
+          <li><b>10+</b><span>courses tutored</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="sheet" id="about">
+    <div class="wrap">
+      <div class="sec-label reveal">About</div>
+      <div class="about-grid">
+        <div class="reveal">
+          <p class="lede" style="margin-top:12px;">I have worked on two construction projects: a six-story villa in Lebanon, where I designed the HVAC and plumbing systems, and the I-80/IL-23 bridge rehabilitation in Illinois, where I inspected contractor work against plan specifications.</p>
+          <p>I've built complete system designs from scratch, produced construction-ready drawings, handled equipment pricing and purchase orders, and verified field execution against spec on both building and infrastructure projects. Alongside that, I lead a 10+ person technical team at ASME and mentor incoming engineers through SHPE.</p>
+        </div>
+        <div class="reveal d2">
+          <span class="mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--copper-dark);display:block;margin-bottom:14px;">Currently</span>
+          <ul class="now-list">
+            <li><span class="when">2025–now</span><span class="role">Team leader</span><br><span class="org">ASME, UIC</span></li>
+            <li><span class="when">2026–now</span><span class="role">Mentor</span><br><span class="org">SHPE, UIC</span></li>
+            <li><span class="when">2026–now</span><span class="role">Peer tutor</span><br><span class="org">Engineering Learning Center, UIC</span></li>
+            <li><span class="when">2026–now</span><span class="role">Peer learning assistant</span><br><span class="org">Math &amp; Science Learning Center, UIC</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="sheet" id="education">
+    <div class="wrap">
+      <div class="sec-label reveal">Education</div>
+      <div class="reveal">
+        <h2>University of Illinois Chicago</h2>
+        <p style="margin-top:14px;font-size:17px;">BS Mechanical Engineering, Minor in Electrical Engineering<br>
+        <span class="mono" style="font-size:14px;">GPA 3.92 / 4.0 &nbsp;·&nbsp; Expected May 2028</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="sheet" id="experience">
+    <div class="wrap">
+      <div class="sec-label reveal">Experience</div>
+
+      <!-- IDOT -->
+      <div class="job">
+        <div class="job-head reveal">
+          <div>
+            <span class="meta">Illinois Department of Transportation · Ottawa, IL</span>
+            <h3 style="margin-top:6px;">Project Implementation Engineering Intern</h3>
+          </div>
+          <span class="dates">May – Aug 2026</span>
+        </div>
+        <p class="reveal" style="margin-top:10px;">Three months full-time on the I-80/IL-23 bridge rehabilitation — <mark>a project later nominated for IDOT's Bridge Rehabilitation Project of the Year</mark>.</p>
+
+        <div class="docfeat reveal">
+          <a class="shot" href="assets/Kevin_Abou_Chedid_IDOT_Evaluation.pdf" id="idot-eval-link" download="Kevin_Abou_Chedid_IDOT_Evaluation.pdf">
+            <img loading="lazy" decoding="async" src="assets/idot-evaluation.jpg" alt="IDOT temporary employee evaluation, rated Exceeds Expectations across all categories">
+          </a>
+          <div>
+            <div class="kicker">Performance evaluation</div>
+            <p class="pullquote">"Kevin is a self-starter who consistently takes initiative. After completing assigned tasks, he proactively seeks out additional work and looks for other ways to contribute. He works well with others and as a team. <mark>His willingness and ability to assist and complete tasks far exceeded his position responsibilities.</mark>"</p>
+            <ul class="ratings">
+              <li>Quality &amp; quantity of work <span>Exceeds</span></li>
+              <li>Punctuality &amp; attendance <span>Exceeds</span></li>
+              <li>Initiative &amp; judgement <span>Exceeds</span></li>
+              <li>Safety practices <span>Exceeds</span></li>
+              <li>Overall evaluation <span>Exceeds</span></li>
+            </ul>
+            <p class="mono" style="font-size:12px;margin-bottom:16px;">Signed by Troy Hart, Resident Engineer · Recommended for rehire</p>
+            <a class="doc-link" href="assets/Kevin_Abou_Chedid_IDOT_Evaluation.pdf" id="idot-eval-link-2" download="Kevin_Abou_Chedid_IDOT_Evaluation.pdf">Download full evaluation (PDF)</a>
+          </div>
+        </div>
+
+        <ul class="reveal">
+          <li>Redesigned bridge deck elevation profiles using 3 methods to improve alignment with plan specs</li>
+          <li>Ran yield, speed, and temperature checks on paving operations up to 3,000+ tons/day, verifying tonnage</li>
+          <li>Performed pre-pour dry runs and depth checks for concrete overlay, achieving accuracy within 0.0075 ft of target</li>
+          <li>Conducted GPS/total station surveys and built pay estimates in OpenRoads</li>
+        </ul>
+
+        <div class="gallery reveal" data-gallery>
+          <div class="gal-head">
+            <span class="gal-title">On site</span>
+            <div class="gal-ctrls">
+              <button class="gal-btn" data-dir="-1" aria-label="Scroll left">&#8592;</button>
+              <button class="gal-btn" data-dir="1" aria-label="Scroll right">&#8594;</button>
+            </div>
+          </div>
+          <div class="track">
+            <figure class="slide s-wide"><img loading="lazy" decoding="async" src="assets/idot-bridge.jpg" alt="Underside of the I-80/IL-23 bridge"><figcaption>I-80/IL-23 structure</figcaption></figure>
+            <figure class="slide s-tall"><img loading="lazy" decoding="async" src="assets/idot-paving-day.jpg" alt="Crew placing and finishing concrete overlay"><figcaption>Overlay placement &amp; finishing</figcaption></figure>
+            <figure class="slide s-lg"><img loading="lazy" decoding="async" src="assets/idot-paving-night.jpg" alt="Night paving operations on the bridge deck"><figcaption>Night pour operations</figcaption></figure>
+          </div>
+        </div>
+      </div>
+
+      <!-- NAMES SAL -->
+      <div class="job">
+        <div class="job-head reveal">
+          <div>
+            <span class="meta">Names SAL · Antelias, Lebanon</span>
+            <h3 style="margin-top:6px;">Mechanical Engineering Intern</h3>
+          </div>
+          <span class="dates">Jun – Aug 2025</span>
+        </div>
+
+        <div class="docfeat reveal">
+          <a class="shot" href="assets/Kevin_Abou_Chedid_Names_SAL_Letter.pdf" id="names-letter-link" download="Kevin_Abou_Chedid_Names_SAL_Letter.pdf">
+            <img loading="lazy" decoding="async" src="assets/names-letter.jpg" alt="Letter of recommendation from Names SAL">
+          </a>
+          <div>
+            <div class="kicker">Letter of recommendation</div>
+            <p class="pullquote">"Kevin demonstrated not only a solid grasp of core engineering concepts but also the ability to apply them effectively in a real-world setting."</p>
+            <p class="mono" style="font-size:12px;margin-bottom:16px;">Signed by Nabil Abujawdeh, CEO · Names SAL, MEP Engineering &amp; Contracting</p>
+            <a class="doc-link" href="assets/Kevin_Abou_Chedid_Names_SAL_Letter.pdf" id="names-letter-link-2" download="Kevin_Abou_Chedid_Names_SAL_Letter.pdf">Download letter (PDF)</a>
+          </div>
+        </div>
+
+        <ul class="reveal">
+          <li>Designed a complete HVAC and plumbing system for a six-story villa — equipment schedule, pipe and vent sizing, equipment selection, and cost optimization to meet a $200,000 budget</li>
+          <li>Produced AutoCAD shop drawings to engineering standards for a hotel project in Faraya</li>
+          <li>Led equipment pricing and purchase order preparation, contributing to project cost management</li>
+          <li>Conducted site visits to verify installation matched engineering design specifications</li>
+        </ul>
+
+        <div class="gallery reveal" data-gallery style="margin-top:26px;">
+          <div class="gal-head">
+            <span class="gal-title">Site photos</span>
+            <div class="gal-ctrls">
+              <button class="gal-btn" data-dir="-1" aria-label="Scroll left">&#8592;</button>
+              <button class="gal-btn" data-dir="1" aria-label="Scroll right">&#8594;</button>
+            </div>
+          </div>
+          <div class="track">
+            <figure class="slide s-tall"><img loading="lazy" decoding="async" src="assets/names-riser.jpg" alt="Installed insulated riser with shutoff valves"></figure>
+            <figure class="slide s-lg"><img loading="lazy" decoding="async" src="assets/names-ductwork.jpg" alt="Installed ductwork and pipe hangers"></figure>
+            <figure class="slide s-sq"><img loading="lazy" decoding="async" src="assets/names-field-check.jpg" alt="Manifold checked against laser reference line"></figure>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="sheet" id="projects">
+    <div class="wrap">
+      <div class="sec-label reveal">Projects</div>
+
+      <div class="proj">
+        <div class="proj-grid">
+          <div class="reveal">
+            <span class="when">Sept 2025 – present</span>
+            <h3>Driveable couch — ASME R&amp;D build</h3>
+            <p style="margin-top:12px;">Integrated a UTV-style electrical system (lights, blinkers, horn) and installed a 212cc engine, including break-in, clutch, and throttle setup. Built the wood frame, steering, and axle assembly, and mechanically connected the engine to the axle.</p>
+          </div>
+          <div class="gallery" data-gallery>
+            <div class="gal-head">
+              <span class="gal-title">Design and build</span>
+              <div class="gal-ctrls">
+                <button class="gal-btn" data-dir="-1" aria-label="Scroll left">&#8592;</button>
+                <button class="gal-btn" data-dir="1" aria-label="Scroll right">&#8594;</button>
+              </div>
+            </div>
+            <div class="track">
+            <figure class="slide s-wide"><img loading="lazy" decoding="async" src="assets/asme-couch-cad.jpg" alt="SolidWorks assembly of the driveable couch chassis and frame"><figcaption>SolidWorks assembly</figcaption></figure>
+            <figure class="slide s-tall"><img loading="lazy" decoding="async" src="assets/asme-couch.jpg" alt="ASME team assembling the driveable couch frame and wiring"><figcaption>Build in progress</figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj">
+        <div class="proj-grid flip">
+          <div class="gallery" data-gallery>
+            <div class="gal-head">
+              <span class="gal-title">Design, drawing, and build</span>
+              <div class="gal-ctrls">
+                <button class="gal-btn" data-dir="-1" aria-label="Scroll left">&#8592;</button>
+                <button class="gal-btn" data-dir="1" aria-label="Scroll right">&#8594;</button>
+              </div>
+            </div>
+            <div class="track">
+            <figure class="slide s-wide"><img loading="lazy" decoding="async" src="assets/ski-drone-cad.jpg" alt="SolidWorks assembly of the ski drone with four rotors and ski landing gear"><figcaption>SolidWorks assembly</figcaption></figure>
+            <figure class="slide s-wide"><img loading="lazy" decoding="async" src="assets/ski-drone-drawing.jpg" alt="Ski drone assembly drawing with orthographic views, exploded view, and bill of materials"><figcaption>Assembly drawing with BOM</figcaption></figure>
+            <figure class="slide s-tall"><img loading="lazy" decoding="async" src="assets/ski-drone.jpg" alt="3D-printed ski drone with propellers and Arduino electronics"><figcaption>Built hardware</figcaption></figure>
+            </div>
+          </div>
+          <div class="reveal d1">
+            <span class="when">Jan – May 2025</span>
+            <h3>Ski drone — mechanical engineering design</h3>
+            <p style="margin-top:12px;">Built an Arduino-powered DC motor drone designed to stall mid-air off a ramp. Assembled 3D-printed SolidWorks parts and wrote C++ code meeting project specs.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj">
+        <div class="reveal">
+          <span class="when">Jan – May 2026</span>
+          <h3>Ferromagnet simulation — undergraduate research, The Seara Group, UIC</h3>
+          <p style="margin-top:12px;">Built Python Monte Carlo simulations of a 16×16 lattice with 1,000,000 iterations to graph average spins, magnetism, energy, and heat capacity. Statistically found the ferromagnet critical temperature (Tc = 2.27 J/Kb), then scaled to a 64×64 lattice with 10⁹ iterations on UIC's HPC cluster.</p>
+          <a class="doc-link" href="data:text/x-python;base64,aW1wb3J0IG51bXB5IGFzIG5wCmltcG9ydCBtYXRwbG90bGliLnB5cGxvdCBhcyBwbHQKaW1wb3J0IG51bWJhCmZyb20gbnVtYmEgaW1wb3J0IG5qaXQKZnJvbSBzY2lweS5uZGltYWdlIGltcG9ydCBjb252b2x2ZSwgZ2VuZXJhdGVfYmluYXJ5X3N0cnVjdHVyZQoKIyAxNiBieSAxNiBncmlkCk4gPSAxNgppbml0X3JhbmRvbSA9IG5wLnJhbmRvbS5yYW5kb20oKE4sTikpCmxhdHRpY2VfbiA9IG5wLnplcm9zKChOLCBOKSkKbGF0dGljZV9uW2luaXRfcmFuZG9tPj0wLjc1XSA9IDEKbGF0dGljZV9uW2luaXRfcmFuZG9tPDAuNzVdID0gLTEKCmluaXRfcmFuZG9tID0gbnAucmFuZG9tLnJhbmRvbSgoTixOKSkKbGF0dGljZV9wID0gbnAuemVyb3MoKE4sIE4pKQoKbGF0dGljZV9wW2luaXRfcmFuZG9tPj0wLjI1XSA9IDEKbGF0dGljZV9wW2luaXRfcmFuZG9tPDAuMjVdID0gLTEKCgpwbHQuaW1zaG93KGxhdHRpY2VfcCkKcGx0LnNob3coKQoKZGVmIGdldF9lbmVyZ3kobGF0dGljZSk6CiAgICAjIGFwcGxpZXMgdGhlIG5lYXJlc3QgbmVpZ2hib3VycyBzdW1tYXRpb24KICAgIGtlcm4gPSBnZW5lcmF0ZV9iaW5hcnlfc3RydWN0dXJlKDIsIDEpCiAgICBrZXJuWzFdWzFdID0gRmFsc2UKICAgIGFyciA9IC1sYXR0aWNlICogY29udm9sdmUobGF0dGljZSwga2VybiwgbW9kZT0nY29uc3RhbnQnLCBjdmFsPTApCiAgICByZXR1cm4gYXJyLnN1bSgpCmdldF9lbmVyZ3kobGF0dGljZV9wKQoKI0BudW1iYS5uaml0KCJVbmlUdXBsZShmOFs6XSwgMikoZjhbOiw6XSwgaTgsIGY4LCBmOCkiLCBub3B5dGhvbj1UcnVlLCBub2dpbD1UcnVlKQojZGVmIG1ldHJvcG9saXMoc3Bpbl9hcnIsIHRpbWVzLCBCSiwgZW5lcmd5KToKQG51bWJhLm5qaXQobm9naWw9VHJ1ZSkKZGVmIG1ldHJvcG9saXMoc3Bpbl9hcnIsIHRpbWVzLCBCSiwgZW5lcmd5KToKICAgIHNwaW5fYXJyID0gc3Bpbl9hcnIuY29weSgpCiAgICBuZXRfc3BpbnMgPSBucC56ZXJvcyh0aW1lcy0xKQogICAgbmV0X2VuZXJneSA9IG5wLnplcm9zKHRpbWVzLTEpCiAgICBmb3IgdCBpbiByYW5nZSgwLHRpbWVzLTEpOgogICAgICAgICMgMi4gcGljayByYW5kb20gcG9pbnQgb24gYXJyYXkgYW5kIGZsaXAgc3BpbgogICAgICAgIHggPSBucC5yYW5kb20ucmFuZGludCgwLE4pCiAgICAgICAgeSA9IG5wLnJhbmRvbS5yYW5kaW50KDAsTikKICAgICAgICBzcGluX2kgPSBzcGluX2Fyclt4LHldICNpbml0aWFsIHNwaW4KICAgICAgICBzcGluX2YgPSBzcGluX2kqLTEgI3Byb3Bvc2VkIHNwaW4gZmxpcAoKICAgICAgICAjIGNvbXB1dGUgY2hhbmdlIGluIGVuZXJneQogICAgICAgIEVfaSA9IDAKICAgICAgICBFX2YgPSAwCiAgICAgICAgaWYgeD4wOgogICAgICAgICAgICBFX2kgKz0gLXNwaW5faSpzcGluX2Fyclt4LTEseV0KICAgICAgICAgICAgRV9mICs9IC1zcGluX2Yqc3Bpbl9hcnJbeC0xLHldCiAgICAgICAgaWYgeDxOLTE6CiAgICAgICAgICAgIEVfaSArPSAtc3Bpbl9pKnNwaW5fYXJyW3grMSx5XQogICAgICAgICAgICBFX2YgKz0gLXNwaW5fZipzcGluX2Fyclt4KzEseV0KICAgICAgICBpZiB5PjA6CiAgICAgICAgICAgIEVfaSArPSAtc3Bpbl9pKnNwaW5fYXJyW3gseS0xXQogICAgICAgICAgICBFX2YgKz0gLXNwaW5fZipzcGluX2Fyclt4LHktMV0KICAgICAgICBpZiB5PE4tMToKICAgICAgICAgICAgRV9pICs9IC1zcGluX2kqc3Bpbl9hcnJbeCx5KzFdCiAgICAgICAgICAgIEVfZiArPSAtc3Bpbl9mKnNwaW5fYXJyW3gseSsxXQoKICAgICAgICAjIDMgLyA0LiBjaGFuZ2Ugc3RhdGUgd2l0aCBkZXNpZ25hdGVkIHByb2JhYmlsaXRpZXMKICAgICAgICBkRSA9IEVfZi1FX2kKICAgICAgICBpZiAoZEU+MCkqKG5wLnJhbmRvbS5yYW5kb20oKSA8IG5wLmV4cCgtQkoqZEUpKToKICAgICAgICAgICAgc3Bpbl9hcnJbeCx5XT1zcGluX2YKICAgICAgICAgICAgZW5lcmd5ICs9IGRFCiAgICAgICAgZWxpZiBkRTw9MDoKICAgICAgICAgICAgc3Bpbl9hcnJbeCx5XT1zcGluX2YKICAgICAgICAgICAgZW5lcmd5ICs9IGRFCgogICAgICAgIG5ldF9zcGluc1t0XSA9IHNwaW5fYXJyLnN1bSgpCiAgICAgICAgbmV0X2VuZXJneVt0XSA9IGVuZXJneQogICAgcmV0dXJuIG5ldF9zcGlucywgbmV0X2VuZXJneSAgIyBNb3ZlZCBvdXRzaWRlIHRoZSBsb29wCgojbGF0dGljZV9uLCByZXBldGl0aW9ucywgYmV0YSpKLS0+ZW5lcmdyeQpzcGlucywgZW5lcmdpZXMgPSBtZXRyb3BvbGlzKGxhdHRpY2VfbiwgMTAwMDAwMCwgMC4xLCBnZXRfZW5lcmd5KGxhdHRpY2VfbikpCgpmaWcsIGF4ZXMgPSBwbHQuc3VicGxvdHMoMSwgMiwgZmlnc2l6ZT0oMTIsNCkpCmF4ID0gYXhlc1swXQpheC5wbG90KHNwaW5zL04qKjIpCmF4LnNldF94bGFiZWwoJ0FsZ29yaXRobSBUaW1lIFN0ZXBzJykKYXguc2V0X3lsYWJlbChyJ0F2ZXJhZ2UgU3BpbiAkXGJhcnttfSQnKQpheC5ncmlkKCkKYXggPSBheGVzWzFdCmF4LnBsb3QoZW5lcmdpZXMpCmF4LnNldF94bGFiZWwoJ0FsZ29yaXRobSBUaW1lIFN0ZXBzJykKYXguc2V0X3lsYWJlbChyJ0VuZXJneSAkRS9KJCcpCmF4LmdyaWQoKQpmaWcudGlnaHRfbGF5b3V0KCkKZmlnLnN1cHRpdGxlKHInRXZvbHV0aW9uIG9mIEF2ZXJhZ2UgU3BpbiBhbmQgRW5lcmd5IGZvciAkXGJldGEgSj0kMC4xJywgeT0xLjA3LCBzaXplPTE4KQpwbHQuc2hvdygpCgpkZWYgZ2V0X3NwaW5fZW5lcmd5KGxhdHRpY2UsIEJKcyk6CiAgICBtcyA9IG5wLnplcm9zKGxlbihCSnMpKQogICAgRV9tZWFucyA9IG5wLnplcm9zKGxlbihCSnMpKQogICAgRV9zdGRzID0gbnAuemVyb3MobGVuKEJKcykpCiAgICBmb3IgaSwgYmogaW4gZW51bWVyYXRlKEJKcyk6CiAgICAgICAgc3BpbnMsIGVuZXJnaWVzID0gbWV0cm9wb2xpcyhsYXR0aWNlLCAxMDAwMDAwLCBiaiwgZ2V0X2VuZXJneShsYXR0aWNlKSkKICAgICAgICBtc1tpXSA9IHNwaW5zWy0xMDAwMDAwOl0ubWVhbigpL04qKjIKICAgICAgICBFX21lYW5zW2ldID0gZW5lcmdpZXNbLTEwMDAwMDA6XS5tZWFuKCkKICAgICAgICBFX3N0ZHNbaV0gPSBlbmVyZ2llc1stMTAwMDAwMDpdLnN0ZCgpCiAgICByZXR1cm4gbXMsIEVfbWVhbnMsIEVfc3RkcwoKQkpzID0gbnAuYXJhbmdlKDAuMSwgMiwgMC4wNSkKbXNfbiwgRV9tZWFuc19uLCBFX3N0ZHNfbiA9IGdldF9zcGluX2VuZXJneShsYXR0aWNlX24sIEJKcykKbXNfcCwgRV9tZWFuc19wLCBFX3N0ZHNfcCA9IGdldF9zcGluX2VuZXJneShsYXR0aWNlX3AsIEJKcykKCnBsdC5maWd1cmUoZmlnc2l6ZT0oOCw1KSkKcGx0LnBsb3QoMS9CSnMsIG1zX24sICdvLS0nLCBsYWJlbD0nNzUlIG9mIHNwaW5zIHN0YXJ0ZWQgbmVnYXRpdmUnKQpwbHQucGxvdCgxL0JKcywgbXNfcCwgJ28tLScsIGxhYmVsPSc3NSUgb2Ygc3BpbnMgc3RhcnRlZCBwb3NpdGl2ZScpCnBsdC54bGFiZWwocickXGxlZnQoXGZyYWN7a317Sn1ccmlnaHQpVCQnKQpwbHQueWxhYmVsKHInJFxiYXJ7bX0kJykKcGx0LmxlZ2VuZChmYWNlY29sb3I9J3doaXRlJywgZnJhbWVhbHBoYT0xKQpwbHQuc2hvdygpCgpwbHQucGxvdCgxL0JKcywgRV9zdGRzX24qQkpzLCBsYWJlbD0nNzUlIG9mIHNwaW5zIHN0YXJ0ZWQgbmVnYXRpdmUnKQpwbHQucGxvdCgxL0JKcywgRV9zdGRzX3AqQkpzLCBsYWJlbD0nNzUlIG9mIHNwaW5zIHN0YXJ0ZWQgcG9zaXRpdmUnKQpwbHQueGxhYmVsKHInJFxsZWZ0KFxmcmFje2t9e0p9XHJpZ2h0KVQkJykKcGx0LnlsYWJlbChyJyRDX1YgLyBrXjIkJykKcGx0LmxlZ2VuZCgpCnBsdC5zaG93KCkK" id="ising-code-link" download="ising_model_simulation.py" style="margin-top:6px;">Download simulation source (Python)</a>
+          <details class="codebox reveal">
+            <summary>View the code</summary>
+            <pre><code>import numpy as np
+import matplotlib.pyplot as plt
+import numba
+from numba import njit
+from scipy.ndimage import convolve, generate_binary_structure
+
+# 16 by 16 grid
+N = 16
+init_random = np.random.random((N,N))
+lattice_n = np.zeros((N, N))
+lattice_n[init_random&gt;=0.75] = 1
+lattice_n[init_random&lt;0.75] = -1
+
+init_random = np.random.random((N,N))
+lattice_p = np.zeros((N, N))
+
+lattice_p[init_random&gt;=0.25] = 1
+lattice_p[init_random&lt;0.25] = -1
+
+
+plt.imshow(lattice_p)
+plt.show()
+
+def get_energy(lattice):
+    # applies the nearest neighbours summation
+    kern = generate_binary_structure(2, 1)
+    kern[1][1] = False
+    arr = -lattice * convolve(lattice, kern, mode=&#x27;constant&#x27;, cval=0)
+    return arr.sum()
+get_energy(lattice_p)
+
+#@numba.njit(&quot;UniTuple(f8[:], 2)(f8[:,:], i8, f8, f8)&quot;, nopython=True, nogil=True)
+#def metropolis(spin_arr, times, BJ, energy):
+@numba.njit(nogil=True)
+def metropolis(spin_arr, times, BJ, energy):
+    spin_arr = spin_arr.copy()
+    net_spins = np.zeros(times-1)
+    net_energy = np.zeros(times-1)
+    for t in range(0,times-1):
+        # 2. pick random point on array and flip spin
+        x = np.random.randint(0,N)
+        y = np.random.randint(0,N)
+        spin_i = spin_arr[x,y] #initial spin
+        spin_f = spin_i*-1 #proposed spin flip
+
+        # compute change in energy
+        E_i = 0
+        E_f = 0
+        if x&gt;0:
+            E_i += -spin_i*spin_arr[x-1,y]
+            E_f += -spin_f*spin_arr[x-1,y]
+        if x&lt;N-1:
+            E_i += -spin_i*spin_arr[x+1,y]
+            E_f += -spin_f*spin_arr[x+1,y]
+        if y&gt;0:
+            E_i += -spin_i*spin_arr[x,y-1]
+            E_f += -spin_f*spin_arr[x,y-1]
+        if y&lt;N-1:
+            E_i += -spin_i*spin_arr[x,y+1]
+            E_f += -spin_f*spin_arr[x,y+1]
+
+        # 3 / 4. change state with designated probabilities
+        dE = E_f-E_i
+        if (dE&gt;0)*(np.random.random() &lt; np.exp(-BJ*dE)):
+            spin_arr[x,y]=spin_f
+            energy += dE
+        elif dE&lt;=0:
+            spin_arr[x,y]=spin_f
+            energy += dE
+
+        net_spins[t] = spin_arr.sum()
+        net_energy[t] = energy
+    return net_spins, net_energy  # Moved outside the loop
+
+#lattice_n, repetitions, beta*J--&gt;energry
+spins, energies = metropolis(lattice_n, 1000000, 0.1, get_energy(lattice_n))
+
+fig, axes = plt.subplots(1, 2, figsize=(12,4))
+ax = axes[0]
+ax.plot(spins/N**2)
+ax.set_xlabel(&#x27;Algorithm Time Steps&#x27;)
+ax.set_ylabel(r&#x27;Average Spin $\bar{m}$&#x27;)
+ax.grid()
+ax = axes[1]
+ax.plot(energies)
+ax.set_xlabel(&#x27;Algorithm Time Steps&#x27;)
+ax.set_ylabel(r&#x27;Energy $E/J$&#x27;)
+ax.grid()
+fig.tight_layout()
+fig.suptitle(r&#x27;Evolution of Average Spin and Energy for $\beta J=$0.1&#x27;, y=1.07, size=18)
+plt.show()
+
+def get_spin_energy(lattice, BJs):
+    ms = np.zeros(len(BJs))
+    E_means = np.zeros(len(BJs))
+    E_stds = np.zeros(len(BJs))
+    for i, bj in enumerate(BJs):
+        spins, energies = metropolis(lattice, 1000000, bj, get_energy(lattice))
+        ms[i] = spins[-1000000:].mean()/N**2
+        E_means[i] = energies[-1000000:].mean()
+        E_stds[i] = energies[-1000000:].std()
+    return ms, E_means, E_stds
+
+BJs = np.arange(0.1, 2, 0.05)
+ms_n, E_means_n, E_stds_n = get_spin_energy(lattice_n, BJs)
+ms_p, E_means_p, E_stds_p = get_spin_energy(lattice_p, BJs)
+
+plt.figure(figsize=(8,5))
+plt.plot(1/BJs, ms_n, &#x27;o--&#x27;, label=&#x27;75% of spins started negative&#x27;)
+plt.plot(1/BJs, ms_p, &#x27;o--&#x27;, label=&#x27;75% of spins started positive&#x27;)
+plt.xlabel(r&#x27;$\left(\frac{k}{J}\right)T$&#x27;)
+plt.ylabel(r&#x27;$\bar{m}$&#x27;)
+plt.legend(facecolor=&#x27;white&#x27;, framealpha=1)
+plt.show()
+
+plt.plot(1/BJs, E_stds_n*BJs, label=&#x27;75% of spins started negative&#x27;)
+plt.plot(1/BJs, E_stds_p*BJs, label=&#x27;75% of spins started positive&#x27;)
+plt.xlabel(r&#x27;$\left(\frac{k}{J}\right)T$&#x27;)
+plt.ylabel(r&#x27;$C_V / k^2$&#x27;)
+plt.legend()
+plt.show()
+</code></pre>
+          </details>
+        </div>
+
+        <div class="gallery reveal d1" data-gallery style="margin-top:28px;">
+          <div class="gal-head">
+            <span class="gal-title">Simulation output</span>
+            <div class="gal-ctrls">
+              <button class="gal-btn" data-dir="-1" aria-label="Scroll left">&#8592;</button>
+              <button class="gal-btn" data-dir="1" aria-label="Scroll right">&#8594;</button>
+            </div>
+          </div>
+          <div class="track">
+            <figure class="slide fig s-sq">
+              <img loading="lazy" decoding="async" src="assets/ising-lattice.png" alt="16x16 Ising lattice showing spin-up and spin-down sites">
+              <figcaption>01 — 16×16 spin lattice state</figcaption>
+            </figure>
+            <figure class="slide fig s-wide">
+              <img loading="lazy" decoding="async" src="assets/ising-timeseries.png" alt="Average spin and energy traces over one million algorithm time steps">
+              <figcaption>02 — Spin &amp; energy over 10⁶ steps</figcaption>
+            </figure>
+            <figure class="slide fig s-lg">
+              <img loading="lazy" decoding="async" src="assets/ising-magnetization.png" alt="Average magnetization versus temperature showing transition near Tc">
+              <figcaption>03 — Magnetization vs. temperature</figcaption>
+            </figure>
+            <figure class="slide fig s-lg">
+              <img loading="lazy" decoding="async" src="assets/ising-heatcapacity.png" alt="Heat capacity versus temperature peaking near the critical temperature">
+              <figcaption>04 — Heat capacity peak at T<sub>c</sub> ≈ 2.27</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="sheet" id="certifications">
+    <div class="wrap">
+      <div class="sec-label reveal">Certifications</div>
+      <div class="docfeat reveal">
+        <a class="shot" href="assets/Kevin_Abou_Chedid_Google_AI_Essentials.pdf" id="ai-cert-link" download="Kevin_Abou_Chedid_Google_AI_Essentials.pdf">
+          <img loading="lazy" decoding="async" src="assets/ai-essentials-certificate.jpg" alt="Google AI Essentials specialization certificate from Coursera">
+        </a>
+        <div>
+          <div class="kicker">Google AI Essentials</div>
+          <h3>Google / Coursera — September 2026</h3>
+          <p style="margin-top:12px;">A five-course specialization developed by Google covering practical AI use: introduction to AI, maximizing productivity with AI tools, prompting technique, responsible use, and keeping current as the tools change.</p>
+          <p class="mono" style="font-size:12px;margin-bottom:16px;">Verifiable at coursera.org/verify/specialization/PAIJ92AEKR8S</p>
+          <a class="doc-link" href="assets/Kevin_Abou_Chedid_Google_AI_Essentials.pdf" id="ai-cert-link-2" download="Kevin_Abou_Chedid_Google_AI_Essentials.pdf">Download certificate (PDF)</a>
+        </div>
+      </div>
+
+      <div class="docfeat reveal" style="margin-top:22px;">
+        <a class="shot" href="assets/Kevin_Abou_Chedid_Hot_Work_Certification.pdf" id="hotwork-link" download="Kevin_Abou_Chedid_Hot_Work_Certification.pdf">
+          <img loading="lazy" decoding="async" src="assets/hotwork-certificate.jpg" alt="Hot Work: Welding, Cutting, and Brazing certificate of completion">
+        </a>
+        <div>
+          <div class="kicker">Hot Work: Welding, Cutting &amp; Brazing</div>
+          <h3>University of Illinois Chicago — April 2026</h3>
+          <p style="margin-top:12px;">Shop safety certification covering hot work permitting, fire watch requirements, ventilation, PPE, and safe practice for welding, cutting, and brazing operations.</p>
+          <a class="doc-link" href="assets/Kevin_Abou_Chedid_Hot_Work_Certification.pdf" id="hotwork-link-2" download="Kevin_Abou_Chedid_Hot_Work_Certification.pdf">Download certificate (PDF)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section class="sheet" id="leadership">
+    <div class="wrap">
+      <div class="sec-label reveal">Teaching &amp; Leadership</div>
+      <ul class="now-list reveal">
+        <li>
+          <span class="when">Sept 2025 – present</span>
+          <span class="role">Team leader — American Society of Mechanical Engineers</span><br>
+          <p style="margin:6px 0 0;">Led R&amp;D technical project meetings twice a week for planning, building, and testing. Organized fundraisers to build team budget, set up monthly socials and technical workshops, and drive board-level decisions and strategy.</p>
+        </li>
+        <li>
+          <span class="when">Aug 2026 – present</span>
+          <span class="role">Mentor — Society of Hispanic Professional Engineers</span><br>
+          <p style="margin:6px 0 0;">Meet one-on-one with mentee biweekly to guide their professional and social development, supporting leadership growth through goal-setting, reflection, and ongoing feedback.</p>
+        </li>
+        <li>
+          <span class="when">Jan 2026 – present</span>
+          <span class="role">Peer tutor — Engineering Learning Center, UIC</span><br>
+          <p style="margin:6px 0 0;">Selected to tutor Strength of Materials <em>while still enrolled in the course</em>, based on strong academic performance. Tutor for Statics, Strength of Materials, Thermodynamics, Probability &amp; Statistics, Financial Engineering, and MATLAB. Focus on strengthening how students approach problems rather than just getting them to an answer — average grades improved 45% in Statics and 25% in Strength of Materials.</p>
+        </li>
+        <li>
+          <span class="when">Sept 2026 – present</span>
+          <span class="role">Peer Learning Assistant — Math &amp; Science Learning Center, UIC</span><br>
+          <p style="margin:6px 0 0;">Support students in MATH 181 (Calculus II) during lectures through active-learning exercises and collaborative problem solving. Hold MSLC drop-in hours for individualized help with calculus concepts and problem-solving strategies, and work with the course instructor and fellow PLAs to improve student engagement and understanding.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="sheet" id="skills">
+    <div class="wrap">
+      <div class="sec-label reveal">Skills</div>
+      <div class="skillgrid reveal">
+        <div class="skillcol">
+          <span class="label">Design &amp; drafting</span>
+          <div>SolidWorks</div><div>AutoCAD</div><div>OpenRoads</div>
+        </div>
+        <div class="skillcol">
+          <span class="label">Analysis</span>
+          <div>MATLAB</div><div>Python</div><div>AutoFluid</div><div>Excel</div>
+        </div>
+        <div class="skillcol">
+          <span class="label">Field &amp; QA</span>
+          <div>On-site verification</div><div>GPS / total station</div><div>Safety testing</div>
+        </div>
+        <div class="skillcol">
+          <span class="label">Hands-on</span>
+          <div>Arduino</div><div>Welding</div><div>Soldering</div><div>Woodworking</div>
+        </div>
+      </div>
+      <div class="reveal d1" style="margin-top:30px;display:flex;gap:40px;flex-wrap:wrap;">
+        <div>
+          <span class="mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--copper-dark);display:block;margin-bottom:8px;">Languages</span>
+          <div class="mono" style="font-size:13px;color:var(--ink-soft);">Arabic (native) · French (native) · English (native)</div>
+        </div>
+        <div>
+          <span class="mono" style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--copper-dark);display:block;margin-bottom:8px;">Certifications</span>
+          <div class="mono" style="font-size:13px;color:var(--ink-soft);">Google AI Essentials — Google / Coursera, 2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sheet" id="contact" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="sec-label reveal">Contact</div>
+      <div class="contact-grid">
+        <div class="reveal">
+          <h2>Contact</h2>
+        </div>
+        <ul class="contact-list reveal d1">
+          <li><a href="mailto:kabou@uic.edu">kabou@uic.edu</a></li>
+          <li><a href="tel:+13128858867">(312) 885-8867</a></li>
+          <li><a href="https://www.linkedin.com/in/kevin-abou-chedid" target="_blank" rel="noopener">linkedin.com/in/kevin-abou-chedid</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>© 2026 Kevin Abou Chedid — Chicago, IL</footer>
+
+<script>
+// scroll reveal
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(e){e.classList.add('in');});
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){io.observe(e);});
+})();
+
+// galleries: arrows + drag to scroll
+(function(){
+  document.querySelectorAll('[data-gallery]').forEach(function(gal){
+    var track = gal.querySelector('.track');
+    var btns  = gal.querySelectorAll('.gal-btn');
+
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var dir = parseInt(btn.dataset.dir, 10);
+        track.scrollBy({left: dir * Math.round(track.clientWidth * 0.8)});
+      });
+    });
+
+    function sync(){
+      var maxScroll = track.scrollWidth - track.clientWidth - 2;
+      btns.forEach(function(btn){
+        var dir = parseInt(btn.dataset.dir, 10);
+        btn.disabled = dir < 0 ? track.scrollLeft <= 2 : track.scrollLeft >= maxScroll;
+      });
+    }
+    track.addEventListener('scroll', sync, {passive:true});
+    window.addEventListener('resize', sync);
+    sync();
+
+    // drag to scroll
+    var down=false, startX=0, startLeft=0, moved=false;
+    track.addEventListener('pointerdown', function(e){
+      down=true; moved=false;
+      startX=e.clientX; startLeft=track.scrollLeft;
+      track.classList.add('dragging');
+    });
+    track.addEventListener('pointermove', function(e){
+      if(!down) return;
+      var dx = e.clientX - startX;
+      if(Math.abs(dx) > 4) moved = true;
+      track.scrollLeft = startLeft - dx;
+    });
+    function release(){
+      if(!down) return;
+      down=false;
+      track.classList.remove('dragging');
+      sync();
+    }
+    track.addEventListener('pointerup', release);
+    track.addEventListener('pointerleave', release);
+    track.addEventListener('pointercancel', release);
+    // don't trigger link/image clicks after a drag
+    track.addEventListener('click', function(e){
+      if(moved){ e.preventDefault(); e.stopPropagation(); }
+    }, true);
+  });
+})();
+
+// in-page links: scroll, never navigate (avoids external-link prompts in embeds)
+(function(){
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if(!a) return;
+    var id = a.getAttribute('href').slice(1);
+    var t = id ? document.getElementById(id) : document.body;
+    e.preventDefault();
+    e.stopPropagation();
+    if(t) t.scrollIntoView({block:'start'});
+  }, true);
+})();
+</script>
+
+</body>
+</html>
